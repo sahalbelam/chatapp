@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 ./src/firebase
+"C:\cohort2.0\projects\chat\src\firebase.ts"
 
 # Editor directories and files
 .vscode/*
