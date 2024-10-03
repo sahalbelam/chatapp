@@ -14,59 +14,59 @@ const Signup = () => {
     const [errormessage,setErrormessage] = useState("")
 
     const navigate = useNavigate(); 
-
+    
     const handleSignup = async (e:React.FormEvent) => {
       e.preventDefault();
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user
-
+        
         await updateProfile(user,{
           displayName:displayName
         })
         console.log(user.displayName)
-   
+        
         navigate("/"); 
       } catch (error){
-       if (error instanceof FirebaseError) {
-        switch (error.code) {
+        if (error instanceof FirebaseError) {
+          switch (error.code) {
           case "auth/email-already-in-use":
             setErrormessage("This email is already registered. Please sign in.");
             break;
-          case "auth/invalid-email":
-            setErrormessage("Invalid email format. Please check and try again.");
-            break;
-          case "auth/weak-password":
-            setErrormessage("Password should be at least 6 characters long.");
-            break;
-          default:
-            setErrormessage("Something went wrong. Please try again.");
-        }
-      } else {
-        setErrormessage("An unexpected error occurred. Please try again.");
-      }}
-    };
-
-    useEffect(()=>{
-      if(errormessage){
-        // toast.error(error)
-        toast.error(errormessage, {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Zoom,
-        });
-        setErrormessage("")
-      }
-    },[errormessage])
-    
-  return (
-  <div className="bg-slate-200">
+            case "auth/invalid-email":
+              setErrormessage("Invalid email format. Please check and try again.");
+              break;
+              case "auth/weak-password":
+                setErrormessage("Password should be at least 6 characters long.");
+                break;
+                default:
+                  setErrormessage("Something went wrong. Please try again.");
+                }
+              } else {
+                setErrormessage("An unexpected error occurred. Please try again.");
+              }}
+            };
+            
+            useEffect(()=>{
+              if(errormessage){
+                // toast.error(error)
+                toast.error(errormessage, {
+                  position: "top-right",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  transition: Zoom,
+                });
+                setErrormessage("")
+              }
+            },[errormessage])
+            
+            return (
+              <div className="bg-slate-200">
         <div className="flex flex-col items-center justify-center min-h-screen">
           <form onSubmit={handleSignup} className="bg-white p-6 rounded-2xl shadow-lg flex flex-col">
             <input
