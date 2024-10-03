@@ -11,9 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-
-/src/firebase
-firebase.ts 
+.env.local
 
 # Editor directories and files
 .vscode/*
@@ -25,5 +23,3 @@ firebase.ts
 *.njsproj
 *.sln
 *.sw?
-
-
